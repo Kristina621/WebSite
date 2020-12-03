@@ -1,4 +1,5 @@
-import {Navbar, Form, Button, FormControl, Nav} from 'react-bootstrap'
+import {Navbar, Form, Nav} from 'react-bootstrap'
+import { Button } from 'reactstrap';
 import React from 'react';
 class Menu extends React.Component{
   constructor(props){
@@ -31,10 +32,10 @@ class Menu extends React.Component{
       <Nav.Link href="/download">Скачать</Nav.Link>
       <Nav.Link href="/about">О программе</Nav.Link>
     </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-info">Search</Button>
-    </Form>
+    <div>
+      <Button color="success" className="mr-1">Вход</Button>
+      <Button color="outline-warning" className="ml-1">Регистрация</Button>
+    </div>
   </Navbar>
   )}}
   export default Menu
