@@ -16,7 +16,7 @@ class Download extends React.Component {
         if (appExe !== undefined)
             fetch(appExe.toString())
                 .then(response => response.headers.get('Content-Length'))
-                .then(data => { return (data / 1024) }).then(sizeOf => this.setState({ size: sizeOf }));
+                .then(data => { return (data / 1024 / 1024).toFixed(2) }).then(sizeOf => this.setState({ size: sizeOf }));
     }
 
     render() {
@@ -36,7 +36,7 @@ class Download extends React.Component {
                                     </a>
                                     <img src={img} style={{ width: '60px' }} alt='windows' />
                                 </Button>
-                                <p className="mt-1">Размер {this.state.size} Кб</p>
+                                <p className="mt-1">Размер {this.state.size} Мб</p>
                             </Container>
                         </div>
                     </div>
