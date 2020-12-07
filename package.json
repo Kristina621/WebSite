@@ -7,7 +7,7 @@
     "@testing-library/react": "^11.2.1",
     "@testing-library/user-event": "^12.2.2",
     "bootstrap": "^4.5.3",
-    "firebase": "^8.1.1",
+    "firebase": "^8.1.2",
     "firebase-tools": "^8.16.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
@@ -20,13 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "build": "react-scripts build && firebase deploy"
   },
   "browserslist": {
     "production": [

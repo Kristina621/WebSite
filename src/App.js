@@ -2,28 +2,34 @@ import Menu from './models/menu';
 import Routes from './routes';
 import Right from './models/right';
 import Footer from './models/footer';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
-    <div class="container-fluid h-100">
-      <div class="row h-100">
-        <div class="col fluid d-flex flex-column">
-          <Menu/>
-          <div style={{marginTop: '50px'}}>
-            <div class="flex-grow">
-              <div class="col-12 py-4">
-                <Routes/>
+
+    <Router>
+      <div className="container-fluid h-100">
+        <div className="row h-100">
+
+          <div className="col fluid d-flex flex-column">
+            <Menu />
+            <div style={{ marginTop: '50px' }}>
+              <div className="flex-grow">
+                <div className="col-12 py-4 ">
+                  <Routes />
+                </div>
+              </div>
             </div>
           </div>
-          </div>
+          <Right />
         </div>
-        <Right/>
-      
+        <div className="row">
+          <Footer />
+
+
+        </div>
       </div>
-      <div class="row">
-      <Footer/>
-      </div>
-  </div>
+    </Router>
   );
 }
 

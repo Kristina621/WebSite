@@ -1,19 +1,61 @@
-export default () => {
+import React, { useState } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
+import firebase from "../db/fbDb"
+
+const Auth = (props) => {
+    const {
+        buttonLabel,
+        className,
+        TNClose,
+        setName
+    } = props;
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => { setModal(!modal); TNClose() }
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
-<div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <p>One fine modal body…</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
+        <div>
+            <Button className="mr-1" color="success" onClick={toggle}>{buttonLabel}</Button>
+            <Modal isOpen={modal} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>
+                    Авторизация
+                </ModalHeader>
+                <ModalBody>
+                    <Form>
+                        <FormGroup>
+                            <Label for="logEmail">Email</Label>
+                            <Input type="email" name="email" id="logEmail" placeholder="@" autoFocus value={email} onChange={e => setEmail(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="logPassword">
+                                Пароль
+                            </Label>
+                            <Input type="password" name="password" id="logPassword" value={password} onChange={e => setPassword(e.target.value)} />
+                        </FormGroup>
+                    </Form>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="success" onClick={login}>
+                        Войти
+                    </Button>
+                    <Button color="secondary" onClick={toggle}>
+                        Отмена
+                    </Button>
+                </ModalFooter>
+            </Modal>
         </div>
-    </div>
-</div>
-    )}
+    );
+
+    async function login() {
+        await firebase.login(email, password).then(() => { if (firebase.getCurrentUsername()) toggle() }).catch(err => alert("Не верные данные авторизации"));
+        setName(firebase.getCurrentUsername());
+    }
+
+
+}
+
+export default Auth;

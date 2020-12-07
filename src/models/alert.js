@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import { Component } from 'react';
 import { Alert } from 'reactstrap';
-export default (props) => {
-    const [visible, setVisible] = useState(props.visible);
-  
-    const onDismiss = () => setVisible(false);
-  
+export default class Alertt extends Component {
+  constructor(props) {
+    super(props)
+    // this.state={visible: this.props.visible}
+  }
+
+  render() {
     return (
       <div>
-        <Alert color="danger" isOpen={visible} toggle={onDismiss} >
-          {props.message}
+        <Alert color="danger" isOpen={this.props.visible} toggle={this.props.callBack} >
+          {this.props.message}
         </Alert>
-        </div>
+      </div>
     );
   }
+}
